@@ -19,6 +19,7 @@ type
     ilToolbar: TImageList;
     procedure btnCloseClick(Sender: TObject);
     procedure btnMenuBookClick(Sender: TObject);
+    procedure btnMenuUserClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,7 +33,7 @@ implementation
 
 {$R *.dfm}
 uses
-BookForm;
+BookForm, UserForm;
 
 procedure TfrmMain.btnCloseClick(Sender: TObject);
 begin
@@ -48,6 +49,19 @@ begin
   frmBook.Align := alClient;
   frmBook.show;
 
+end;
+
+procedure TfrmMain.btnMenuUserClick(Sender: TObject);
+begin
+   //
+
+   if not Assigned(frmUser) then            // if not assigned user form then create self (mainform)
+      frmUser.Create(Self);
+
+   frmUser.Parent := pnlLayout;
+   frmUser.BorderStyle := bsNone;
+   frmUser.Align := alClient;
+   frmUser.Show;
 end;
 
 end.

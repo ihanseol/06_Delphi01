@@ -25,10 +25,10 @@ object dmDataAccess: TdmDataAccess
     Left = 104
     Top = 136
     object qryBookBOOK_SEQ: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'BOOK_SEQ'
       Origin = 'BOOK_SEQ'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object qryBookBOOK_TITLE: TWideStringField
       FieldName = 'BOOK_TITLE'
@@ -98,5 +98,80 @@ object dmDataAccess: TdmDataAccess
         Size = 13
         Value = Null
       end>
+  end
+  object qryUser: TFDQuery
+    Active = True
+    OnCalcFields = qryUserCalcFields
+    Connection = conBookRental
+    SQL.Strings = (
+      'SELECT * FROM USERS'
+      '')
+    Left = 408
+    Top = 160
+    object qryUserUSER_SEQ: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'USER_SEQ'
+      Origin = 'USER_SEQ'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryUserUSER_NAME: TWideStringField
+      FieldName = 'USER_NAME'
+      Origin = 'USER_NAME'
+      Required = True
+      Size = 120
+    end
+    object qryUserUSER_BIRTH: TDateField
+      FieldName = 'USER_BIRTH'
+      Origin = 'USER_BIRTH'
+    end
+    object qryUserUSER_SEX: TStringField
+      FieldName = 'USER_SEX'
+      Origin = 'USER_SEX'
+      FixedChar = True
+      Size = 1
+    end
+    object qryUserUSER_PHONE: TStringField
+      FieldName = 'USER_PHONE'
+      Origin = 'USER_PHONE'
+      Size = 15
+    end
+    object qryUserUSER_MAIL: TWideStringField
+      FieldName = 'USER_MAIL'
+      Origin = 'USER_MAIL'
+      Size = 1020
+    end
+    object qryUserUSER_IMAGE: TBlobField
+      FieldName = 'USER_IMAGE'
+      Origin = 'USER_IMAGE'
+    end
+    object qryUserUSER_REG_DATE: TDateField
+      FieldName = 'USER_REG_DATE'
+      Origin = 'USER_REG_DATE'
+    end
+    object qryUserUSER_OUT_YN: TStringField
+      FieldName = 'USER_OUT_YN'
+      Origin = 'USER_OUT_YN'
+      FixedChar = True
+      Size = 1
+    end
+    object qryUserUSER_OUT_DATE: TDateField
+      FieldName = 'USER_OUT_DATE'
+      Origin = 'USER_OUT_DATE'
+    end
+    object qryUserUSER_RENT_COUNT: TIntegerField
+      FieldName = 'USER_RENT_COUNT'
+      Origin = 'USER_RENT_COUNT'
+    end
+    object qryUserUSER_SEX_STR: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'USER_SEX_STR'
+      Calculated = True
+    end
+    object qryUserUSER_OUT: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'USER_OUT'
+      Calculated = True
+    end
   end
 end

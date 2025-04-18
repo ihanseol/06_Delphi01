@@ -20,8 +20,6 @@ object frmMain: TfrmMain
     Ctl3D = False
     ParentCtl3D = False
     TabOrder = 0
-    ExplicitWidth = 1092
-    ExplicitHeight = 660
   end
   object tbMainMenu: TToolBar
     Left = 0
@@ -34,7 +32,6 @@ object frmMain: TfrmMain
     Images = ilToolbar
     ShowCaptions = True
     TabOrder = 1
-    ExplicitWidth = 1092
     object btnRent: TToolButton
       Left = 0
       Top = 0
@@ -53,6 +50,7 @@ object frmMain: TfrmMain
       Top = 0
       Caption = #54924#50896
       ImageIndex = 2
+      OnClick = btnMenuUserClick
     end
     object ToolButton4: TToolButton
       Left = 261

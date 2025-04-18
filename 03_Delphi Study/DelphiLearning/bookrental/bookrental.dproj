@@ -140,6 +140,10 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="CommonFunctions.pas"/>
+        <DCCReference Include="UserForm.pas">
+            <Form>frmUser</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

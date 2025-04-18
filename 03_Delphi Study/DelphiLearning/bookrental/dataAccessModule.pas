@@ -26,7 +26,22 @@ type
     qryBookBOOK_RENT: TStringField;
     qryBookBOOK_RENT1: TStringField;
     qryDuplicatedBook: TFDQuery;
+    qryUser: TFDQuery;
+    qryUserUSER_SEQ: TIntegerField;
+    qryUserUSER_NAME: TWideStringField;
+    qryUserUSER_BIRTH: TDateField;
+    qryUserUSER_SEX: TStringField;
+    qryUserUSER_PHONE: TStringField;
+    qryUserUSER_MAIL: TWideStringField;
+    qryUserUSER_IMAGE: TBlobField;
+    qryUserUSER_REG_DATE: TDateField;
+    qryUserUSER_OUT_YN: TStringField;
+    qryUserUSER_OUT_DATE: TDateField;
+    qryUserUSER_RENT_COUNT: TIntegerField;
+    qryUserUSER_SEX_STR: TStringField;
+    qryUserUSER_OUT: TStringField;
     procedure qryBookCalcFields(DataSet: TDataSet);
+    procedure qryUserCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -68,6 +83,21 @@ begin
   begin
     qryBook.FieldByName('BOOK_RENT').AsString := '대여가능';
   end;
+end;
+
+procedure TdmDataAccess.qryUserCalcFields(DataSet: TDataSet);
+begin
+  //
+  if qryUser.FieldByName('USER_SEX').AsString = 'M' then
+    qryUser.FieldByName('USER_SEX_STR').AsString := '남자'
+  else
+    qryUser.FieldByName('USER_SEX_STR').AsString := '여자';
+
+  if qryUserUSER_OUT_YN.AsString = 'Y' then
+    qryUserUSER_OUT.AsString := '탈퇴'
+  else
+    qryUserUSER_OUT.AsString := '회원';
+
 end;
 
 end.

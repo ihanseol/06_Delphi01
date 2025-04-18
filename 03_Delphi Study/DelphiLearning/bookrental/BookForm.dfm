@@ -62,7 +62,6 @@ object frmBook: TfrmBook
     Height = 734
     Align = alClient
     TabOrder = 1
-    ExplicitHeight = 870
     object Splitter1: TSplitter
       Left = 739
       Top = 1
@@ -79,7 +78,6 @@ object frmBook: TfrmBook
       Height = 732
       Align = alLeft
       TabOrder = 0
-      ExplicitHeight = 868
       object pnlMainHeader: TPanel
         Left = 1
         Top = 1
@@ -106,13 +104,16 @@ object frmBook: TfrmBook
           Width = 241
           Height = 23
           TabOrder = 0
+          OnKeyUp = edtSearchKeyUp
         end
         object chkSearchTitle: TCheckBox
           Left = 285
           Top = 15
-          Width = 97
+          Width = 44
           Height = 17
           Caption = #51228#47785
+          Checked = True
+          State = cbChecked
           TabOrder = 1
         end
         object chkSearchAuthor: TCheckBox
@@ -121,6 +122,8 @@ object frmBook: TfrmBook
           Width = 58
           Height = 17
           Caption = #51200#51088
+          Checked = True
+          State = cbChecked
           TabOrder = 2
         end
       end
@@ -131,7 +134,13 @@ object frmBook: TfrmBook
         Height = 671
         Align = alClient
         DataSource = dsBook
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
         Options = [dgEditing, dgAlwaysShowEditor, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        ParentFont = False
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -180,7 +189,7 @@ object frmBook: TfrmBook
       Height = 732
       Align = alClient
       TabOrder = 1
-      ExplicitHeight = 868
+      ExplicitTop = 0
       DesignSize = (
         500
         732)
@@ -262,6 +271,23 @@ object frmBook: TfrmBook
         Font.Style = []
         ParentFont = False
       end
+      object lblLink: TLabel
+        Left = 193
+        Top = 199
+        Width = 48
+        Height = 15
+        Anchors = [akTop, akRight]
+        Caption = #48148#47196#44032#44592
+        Color = clRed
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clCrimson
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        OnClick = lblLinkClick
+      end
       object dbeTitle: TDBEdit
         Left = 6
         Top = 43
@@ -303,7 +329,7 @@ object frmBook: TfrmBook
         DataSource = dsBook
         TabOrder = 3
       end
-      object dbeLlink: TDBEdit
+      object dbeLink: TDBEdit
         Left = 46
         Top = 170
         Width = 200

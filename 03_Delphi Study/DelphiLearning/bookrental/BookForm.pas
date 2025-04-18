@@ -3,10 +3,9 @@ unit BookForm;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls, Vcl.StdCtrls;
+  Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.DBCtrls, Vcl.Mask;
 
 type
   TfrmBook = class(TForm)
@@ -32,7 +31,7 @@ type
     Label2: TLabel;
     dbePrice: TDBEdit;
     Label3: TLabel;
-    dbeLlink: TDBEdit;
+    dbeLink: TDBEdit;
     btnImageLoad: TButton;
     GroupBox1: TGroupBox;
     btnImageClear: TButton;
@@ -45,6 +44,7 @@ type
     Splitter1: TSplitter;
     dsBook: TDataSource;
     dlgLoadImage: TOpenDialog;
+    lblLink: TLabel;
     procedure btnCloseClick(Sender: TObject);
     procedure btnImageLoadClick(Sender: TObject);
     procedure btnImageClearClick(Sender: TObject);
@@ -55,6 +55,9 @@ type
     procedure btnDeleteClick(Sender: TObject);
     procedure dsBookStateChange(Sender: TObject);
     procedure dbeISBNExit(Sender: TObject);
+    procedure edtSearchKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure lblLinkClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -69,7 +72,8 @@ implementation
 {$R *.dfm}
 
 uses
-  dataAccessModule, CommonFunctions;
+  dataAccessModule, CommonFunctions, WinAPI.ShellAPI;
+  // WinAPI.ShellAPI - for this  ShellExecute(Handle, 'open', PChar(dbeLink.Text), nil, nil, SW_SHOW);
 
 procedure TfrmBook.btnAddClick(Sender: TObject);
 begin
@@ -204,6 +208,38 @@ begin
     (dmDataAccess.qryBook.RecordCount > 0);
 
   //
+end;
+
+procedure TfrmBook.edtSearchKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+  Filter: String;
+begin
+  Filter := '';
+  if edtSearch.Text <> '' then // if search text is not blank
+  begin
+    if chkSearchTitle.Checked then
+      Filter := Format('Book_TITLE LIKE ''%%%S%%''', [edtSearch.Text]);
+    // '' --> ' , %% --> %
+    // BOOK_TITLE like '%AAA%' --> SQL Query Statement
+    if chkSearchAuthor.Checked then
+    begin
+      if Filter <> '' then
+        Filter := Filter + ' OR ';
+      Filter := Filter + Format('Book_AUTHOR LIKE ''%%%S%%''',
+        [edtSearch.Text]);
+    end;
+  end;
+
+  dmDataAccess.qryBook.Filter := Filter;
+  dmDataAccess.qryBook.Filtered := (Filter <> '');
+
+end;
+
+procedure TfrmBook.lblLinkClick(Sender: TObject);
+begin
+  //  open web browser
+  ShellExecute(Handle, 'open', PChar(dbeLink.Text), nil, nil, SW_SHOW);
 end;
 
 end.
