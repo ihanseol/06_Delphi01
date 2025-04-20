@@ -63,7 +63,6 @@ object frmUser: TfrmUser
       Height = 752
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 872
       object Splitter1: TSplitter
         Left = 803
         Top = 45
@@ -86,7 +85,6 @@ object frmUser: TfrmUser
         Height = 44
         Align = alTop
         TabOrder = 0
-        ExplicitWidth = 870
         object Label1: TLabel
           Left = 6
           Top = 15
@@ -100,21 +98,26 @@ object frmUser: TfrmUser
           Width = 157
           Height = 23
           TabOrder = 0
+          OnKeyUp = edtSearchKeyUp
         end
         object chkSearchName: TCheckBox
           Left = 199
-          Top = 15
+          Top = 21
           Width = 58
           Height = 17
           Caption = #51060#47492
+          Checked = True
+          State = cbChecked
           TabOrder = 1
         end
         object chkSearchPhone: TCheckBox
           Left = 248
-          Top = 15
+          Top = 21
           Width = 73
           Height = 17
           Caption = #51204#54868#48264#54840
+          Checked = True
+          State = cbChecked
           TabOrder = 2
         end
       end
@@ -209,47 +212,44 @@ object frmUser: TfrmUser
       object Label2: TLabel
         Left = 16
         Top = 16
-        Width = 0
+        Width = 24
         Height = 15
         Anchors = [akLeft, akTop, akRight]
         Caption = #51060#47492
-        ExplicitWidth = 24
       end
       object Label3: TLabel
         Left = 16
         Top = 66
-        Width = 24
+        Width = 48
         Height = 15
         Anchors = [akLeft, akTop, akRight]
         Caption = #49373#45380#50900#51068
-        ExplicitWidth = 48
       end
       object Label4: TLabel
         Left = 24
         Top = 182
-        Width = 24
+        Width = 48
         Height = 15
         Anchors = [akLeft, akTop, akRight]
         Caption = #51204#54868#48264#54840
-        ExplicitWidth = 48
       end
       object Label5: TLabel
         Left = 24
         Top = 233
-        Width = 24
+        Width = 48
         Height = 15
         Anchors = [akLeft, akTop, akRight]
         Caption = #47700#51068#51452#49548
-        ExplicitWidth = 48
       end
       object dbeName: TDBEdit
-        Left = 16
+        Left = 23
         Top = 37
         Width = 137
         Height = 23
         DataField = 'USER_NAME'
         DataSource = dbUser
         TabOrder = 0
+        OnExit = dbeNameExit
       end
       object dpBirth: TCalendarPicker
         Left = 16
@@ -321,7 +321,6 @@ object frmUser: TfrmUser
         Anchors = [akTop, akRight]
         Caption = 'GroupBox1'
         TabOrder = 5
-        ExplicitLeft = 192
         object imgUser: TImage
           Left = 0
           Top = 16

@@ -53,10 +53,17 @@ type
     procedure btnSaveClick(Sender: TObject);
     procedure btnDeleteClick(Sender: TObject);
     procedure dbUserStateChange(Sender: TObject);
+    procedure dbeNameExit(Sender: TObject);
+    procedure edtSearchKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
+    function DuplicatedUser: Boolean;
+    // Ctrl+Shift_C  , code gen for this function and procedure;
+    // Ctrl+Shift+Up, Down goto implementation ...
   public
     { Public declarations }
+
   end;
 
 var
@@ -178,6 +185,12 @@ begin
   dmDataAccess.qryUser.Refresh;
 end;
 
+procedure TfrmUser.dbeNameExit(Sender: TObject);
+begin
+  //
+  DuplicatedUser;
+end;
+
 procedure TfrmUser.dbUserDataChange(Sender: TObject; Field: TField);
 var
   LField: TField;
@@ -233,9 +246,50 @@ begin
       Field.Assign(nil)
     else
       Field.AsDateTime := dpBirth.Date;
+  end;
+   DuplicatedUser;
+end;
 
+function TfrmUser.DuplicatedUser(): Boolean;
+var
+  seq: Integer;
+  aName: String;
+  aBirth: TDateTime;
+begin
+  seq := dmDataAccess.qryUser.FieldByName('USER_SEQ').AsInteger;
+  aName := dmDataAccess.qryUser.FieldByName('USER_NAME').AsString;
+  aBirth := dmDataAccess.qryUser.FieldByName('USER_BIRTH').AsDateTime;
+
+  if (aName = '') or (aBirth = 0) then
+    Exit;
+
+  if dmDataAccess.DuplicatedUser(seq, aName, aBirth) then
+    ShowMessage('이미 등록된 회원입니다. (이름과 생년월일이 중복됩니다.)');
+
+end;
+
+procedure TfrmUser.edtSearchKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+Filter : string;
+begin
+//
+  Filter := '';
+  if edtSearch.Text <> '' then
+  begin
+      if chkSearchName.Checked then
+       Filter := Format('USER_NAME LIKE ''%%%S%%'' ',[edtSearch.Text]);
+      if chkSearchPhone.Checked then
+      begin
+        if Filter  <> '' then
+             Filter := Filter + ' OR ' ;
+
+         Filter := Filter + Format('USER_PHONE LIKE ''%%%S%%'' ',[edtSearch.Text]);
+      end;
   end;
 
+  dmDataAccess.qryUser.Filter := Filter;
+  dmDataAccess.qryUser.Filtered :=  (Filter <> '');
 end;
 
 end.

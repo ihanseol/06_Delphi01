@@ -1,6 +1,6 @@
 object dmDataAccess: TdmDataAccess
   Height = 480
-  Width = 640
+  Width = 847
   object conBookRental: TFDConnection
     Params.Strings = (
       
@@ -106,8 +106,8 @@ object dmDataAccess: TdmDataAccess
     SQL.Strings = (
       'SELECT * FROM USERS'
       '')
-    Left = 408
-    Top = 160
+    Left = 208
+    Top = 48
     object qryUserUSER_SEQ: TIntegerField
       AutoGenerateValue = arAutoInc
       FieldName = 'USER_SEQ'
@@ -173,5 +173,104 @@ object dmDataAccess: TdmDataAccess
       FieldName = 'USER_OUT'
       Calculated = True
     end
+  end
+  object qryDuplicatedUser: TFDQuery
+    Connection = conBookRental
+    SQL.Strings = (
+      'SELECT USER_SEQ FROM USERS'
+      'WHERE USER_NAME = :NAME AND USER_BIRTH = :BIRTH'
+      '')
+    Left = 208
+    Top = 128
+    ParamData = <
+      item
+        Name = 'NAME'
+        DataType = ftWideString
+        ParamType = ptInput
+        Size = 120
+        Value = Null
+      end
+      item
+        Name = 'BIRTH'
+        DataType = ftDate
+        ParamType = ptInput
+      end>
+  end
+  object qryRent: TFDQuery
+    Active = True
+    Connection = conBookRental
+    UpdateOptions.AutoIncFields = 'RENT_SEQ'
+    UpdateObject = usRent
+    SQL.Strings = (
+      
+        'SELECT BOOK.BOOK_TITLE, USERS.USER_NAME, RENT.* FROM RENT, BOOK,' +
+        ' USERS'
+      'WHERE'
+      '     RENT.BOOK_SEQ = BOOK.BOOK_SEQ AND'
+      '     RENT.USER_SEQ = USERS.USER_SEQ'
+      ''
+      ''
+      '')
+    Left = 744
+    Top = 312
+  end
+  object qryRentBook: TFDQuery
+    IndexFieldNames = 'BOOK_SEQ'
+    MasterSource = dsRent
+    MasterFields = 'BOOK_SEQ'
+    Connection = conBookRental
+    SQL.Strings = (
+      'SELECT * FROM BOOK'
+      '')
+    Left = 648
+    Top = 392
+  end
+  object qryRentUser: TFDQuery
+    IndexFieldNames = 'USER_SEQ'
+    MasterSource = dsRent
+    MasterFields = 'USER_SEQ'
+    Connection = conBookRental
+    SQL.Strings = (
+      'SELECT * FROM USERS'
+      '')
+    Left = 744
+    Top = 392
+  end
+  object dsRent: TDataSource
+    DataSet = qryRent
+    Left = 648
+    Top = 336
+  end
+  object usRent: TFDUpdateSQL
+    Connection = conBookRental
+    InsertSQL.Strings = (
+      'INSERT INTO RENT'
+      '(RENT_SEQ, USER_SEQ, BOOK_SEQ, RENT_DATE, '
+      '  RENT_RETURN_DATE, RENT_RETURN_YN)'
+      
+        'VALUES (:NEW_RENT_SEQ, :NEW_USER_SEQ, :NEW_BOOK_SEQ, :NEW_RENT_D' +
+        'ATE, '
+      '  :NEW_RENT_RETURN_DATE, :NEW_RENT_RETURN_YN)')
+    ModifySQL.Strings = (
+      'UPDATE RENT'
+      
+        'SET RENT_SEQ = :NEW_RENT_SEQ, USER_SEQ = :NEW_USER_SEQ, BOOK_SEQ' +
+        ' = :NEW_BOOK_SEQ, '
+      
+        '  RENT_DATE = :NEW_RENT_DATE, RENT_RETURN_DATE = :NEW_RENT_RETUR' +
+        'N_DATE, '
+      '  RENT_RETURN_YN = :NEW_RENT_RETURN_YN'
+      'WHERE RENT_SEQ = :OLD_RENT_SEQ')
+    DeleteSQL.Strings = (
+      'DELETE FROM RENT'
+      'WHERE RENT_SEQ = :OLD_RENT_SEQ')
+    FetchRowSQL.Strings = (
+      
+        'SELECT RENT_SEQ, USER_SEQ, BOOK_SEQ, RENT_DATE, RENT_RETURN_DATE' +
+        ', RENT_RETURN_YN'
+      'FROM RENT'
+      'WHERE RENT_SEQ = :OLD_RENT_SEQ')
+    Left = 648
+    Top = 264
   end
 end

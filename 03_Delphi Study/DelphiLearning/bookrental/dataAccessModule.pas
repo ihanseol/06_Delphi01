@@ -40,6 +40,12 @@ type
     qryUserUSER_RENT_COUNT: TIntegerField;
     qryUserUSER_SEX_STR: TStringField;
     qryUserUSER_OUT: TStringField;
+    qryDuplicatedUser: TFDQuery;
+    qryRent: TFDQuery;
+    qryRentBook: TFDQuery;
+    qryRentUser: TFDQuery;
+    dsRent: TDataSource;
+    usRent: TFDUpdateSQL;
     procedure qryBookCalcFields(DataSet: TDataSet);
     procedure qryUserCalcFields(DataSet: TDataSet);
   private
@@ -47,6 +53,8 @@ type
   public
     { Public declarations }
     function DuplicatedISBN(ASeq, AISBN: string): Boolean;
+    function DuplicatedUSER(ASeq: Integer; AName: String;
+      ABirth: TDateTime): Boolean;
   end;
 
 var
@@ -65,6 +73,22 @@ begin
 
   if (qryDuplicatedBook.RecordCount > 0) and
     (qryDuplicatedBook.Fields[0].AsString <> ASeq) then
+    Result := True;
+
+end;
+
+function TdmDataAccess.DuplicatedUSER(ASeq: Integer; AName: String;
+  ABirth: TDateTime): Boolean;
+begin
+  //
+  Result := False;
+  qryDuplicatedUser.close;
+  qryDuplicatedUser.ParamByName('NAME').AsString := AName;
+  qryDuplicatedUser.ParamByName('BIRTH').AsDateTime := ABirth;
+  qryDuplicatedUser.Open;
+
+  if (qryDuplicatedUser.RecordCount > 0)
+    and (qryDuplicatedUser.Fields[0].AsInteger  <> ASeq)   then
     Result := True;
 
 end;
