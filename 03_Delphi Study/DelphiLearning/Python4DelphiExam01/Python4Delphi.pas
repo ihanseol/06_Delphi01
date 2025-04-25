@@ -15,7 +15,7 @@ type
     PythonGUIInputOutput1: TPythonGUIInputOutput;
     Memo2: TMemo;
     procedure Button1Click(Sender: TObject);
-//    procedure FormCreate(Sender: TObject);
+    // procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,19 +34,19 @@ implementation
 
 { TfrmPython4Delphi }
 
-//procedure TfrmPython4Delphi.FormCreate(Sender: TObject);
-//begin
-//  PythonEngine1.DllName := 'python38.dll';
-//  PythonEngine1.DllPath :=
-//    'c:\\Users\\minhwasoo\\AppData\\Local\\Programs\\Python\\Python38\\';
-//  // Update this path!
-//  PythonEngine1.RegVersion := '3.8'; // Match your Python version
-//  PythonEngine1.LoadDll; // Explicitly load the DLL
-//end;
+// procedure TfrmPython4Delphi.FormCreate(Sender: TObject);
+// begin
+// PythonEngine1.DllName := 'python38.dll';
+// PythonEngine1.DllPath :=
+// 'c:\\Users\\minhwasoo\\AppData\\Local\\Programs\\Python\\Python38\\';
+// // Update this path!
+// PythonEngine1.RegVersion := '3.8'; // Match your Python version
+// PythonEngine1.LoadDll; // Explicitly load the DLL
+// end;
 
 procedure TfrmPython4Delphi.Button1Click(Sender: TObject);
 begin
-   ReadXLSXDataWithPython('d:\05_Send\YanSoo_Spec.xlsx');
+  ReadXLSXDataWithPython('d:\05_Send\YanSoo_Spec.xlsx');
   // TestPython('');
   // PythonEngine1.ExecStrings( Memo2.Lines );
 end;
@@ -64,8 +64,9 @@ begin
     pythonString.Add('import pandas as pd');
     pythonString.Add('df = pd.read_excel("' + StringReplace(FileName, '\', '\\',
       [rfReplaceAll]) + '")');
-//    pythonString.Add('df.to_csv(index=False)');
     pythonString.Add('print(df)');
+    pythonString.Add('df.to_csv(''Yansoo_Spec.csv'', index=False)');
+
     PythonEngine1.ExecStrings(pythonString);
   finally
     pythonString.Free;
