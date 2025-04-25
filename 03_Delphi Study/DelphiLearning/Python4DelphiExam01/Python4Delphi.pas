@@ -34,23 +34,22 @@ implementation
 
 { TfrmPython4Delphi }
 
-
 //procedure TfrmPython4Delphi.FormCreate(Sender: TObject);
 //begin
 //  PythonEngine1.DllName := 'python38.dll';
-//  PythonEngine1.DllPath := 'c:\Users\minhwasoo\AppData\Local\Programs\Python\Python38\'; // Update this path!
+//  PythonEngine1.DllPath :=
+//    'c:\\Users\\minhwasoo\\AppData\\Local\\Programs\\Python\\Python38\\';
+//  // Update this path!
 //  PythonEngine1.RegVersion := '3.8'; // Match your Python version
 //  PythonEngine1.LoadDll; // Explicitly load the DLL
 //end;
 
-
 procedure TfrmPython4Delphi.Button1Click(Sender: TObject);
 begin
-  // ReadXLSXDataWithPython('d:\05_Send\YanSoo_Spec.xlsx');
-//  TestPython('');
-  PythonEngine1.ExecStrings( Memo2.Lines );
+   ReadXLSXDataWithPython('d:\05_Send\YanSoo_Spec.xlsx');
+  // TestPython('');
+  // PythonEngine1.ExecStrings( Memo2.Lines );
 end;
-
 
 procedure TfrmPython4Delphi.ReadXLSXDataWithPython(const FileName: string);
 var
@@ -65,13 +64,9 @@ begin
     pythonString.Add('import pandas as pd');
     pythonString.Add('df = pd.read_excel("' + StringReplace(FileName, '\', '\\',
       [rfReplaceAll]) + '")');
-    pythonString.Add('df.to_csv(index=False)');
-    Output := PythonEngine1.EvalStrings(pythonString);
-    try
-      Memo1.Lines.Text := PythonEngine1.PyObjectAsString(Output);
-    finally
-      PythonEngine1.Py_XDECREF(Output);
-    end;
+//    pythonString.Add('df.to_csv(index=False)');
+    pythonString.Add('print(df)');
+    PythonEngine1.ExecStrings(pythonString);
   finally
     pythonString.Free;
   end;
@@ -87,13 +82,8 @@ begin
 
   pythonString := TStringList.Create;
   try
-    pythonString.Add('3+4');
-    Output := PythonEngine1.EvalStrings(pythonString);
-    try
-      Memo1.Lines.Text := PythonEngine1.PyObjectAsString(Output);
-    finally
-      PythonEngine1.Py_XDECREF(Output);
-    end;
+    pythonString.Add('print(3+4)');
+    PythonEngine1.ExecStrings(pythonString);
   finally
     pythonString.Free;
   end;

@@ -35,7 +35,7 @@ object frmPython4Delphi: TfrmPython4Delphi
     Width = 761
     Height = 169
     Lines.Strings = (
-      '2+3')
+      'print(2+3)')
     TabOrder = 2
   end
   object PythonEngine1: TPythonEngine
