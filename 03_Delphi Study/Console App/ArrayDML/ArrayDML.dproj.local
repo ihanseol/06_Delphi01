@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
+    <Transaction>1899-12-30 00:00:00.000.896,C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\ArrayDML\ArrayDML.dproj</Transaction>
     <Transaction>1899-12-30 00:00:00.000.043,=C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2025-04-25 11:37:15.896,C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\ArrayDML\ArrayDML.dproj=C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
   </Transactions>
 </BorlandProject>

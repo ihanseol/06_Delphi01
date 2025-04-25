@@ -5,6 +5,7 @@ program ArrayDML;
 uses
   System.SysUtils,
   System.Rtti;
+// 우리는 지금
 
 type
   TPerson = record
