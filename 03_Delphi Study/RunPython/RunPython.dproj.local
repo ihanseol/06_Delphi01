@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899-12-30 00:00:00.000.942,=C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.043,=C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.192,=C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.907,C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\RunPython\RunPython_U.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.545,C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\RunPython\RunPython.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.907,C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\RunPython\RunPython_U.dfm</Transaction>
+    <Transaction>2025-04-25 13:50:44.977,=C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\RunPython\Unit1.pas</Transaction>
+    <Transaction>2025-04-25 13:52:35.713,C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\RunPython\unit_RunPythonExample01.pas=C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\RunPython\Unit1.pas</Transaction>
+    <Transaction>2025-04-25 14:01:04.480,C:\Users\minhwasoo\Documents\Embarcadero\Studio\Projects\RunPython\unit_RunPythonExample01.pas=</Transaction>
+  </Transactions>
+</BorlandProject>
