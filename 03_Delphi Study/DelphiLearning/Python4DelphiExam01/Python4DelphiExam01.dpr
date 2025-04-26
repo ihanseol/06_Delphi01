@@ -2,7 +2,8 @@ program Python4DelphiExam01;
 
 uses
   Vcl.Forms,
-  Python4Delphi in 'Python4Delphi.pas' {frmPython4Delphi};
+  Python4Delphi in 'Python4Delphi.pas' {frmPython4Delphi},
+  BackupCode in 'BackupCode.pas';
 
 {$R *.res}
 

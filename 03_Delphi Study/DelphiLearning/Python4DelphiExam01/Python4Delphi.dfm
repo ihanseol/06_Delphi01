@@ -16,15 +16,13 @@ object frmPython4Delphi: TfrmPython4Delphi
     Top = 24
     Width = 761
     Height = 169
-    Lines.Strings = (
-      'Memo1')
     TabOrder = 0
   end
   object Button1: TButton
-    Left = 448
-    Top = 424
-    Width = 321
-    Height = 121
+    Left = 608
+    Top = 496
+    Width = 177
+    Height = 73
     Caption = 'Button1'
     TabOrder = 1
     OnClick = Button1Click
@@ -35,8 +33,21 @@ object frmPython4Delphi: TfrmPython4Delphi
     Width = 761
     Height = 169
     Lines.Strings = (
-      'print(2+3)')
+      'import pandas as pd'
+      'df = pd.read_excel('#39'd:\\05_Send\\Yansoo_Spec.xlsx'#39')'
+      'print(df['#39'Company'#39'].iloc[-1])'
+      'print(df['#39'address'#39'].iloc[-1])'
+      'print(len(df))')
     TabOrder = 2
+  end
+  object Button2: TButton
+    Left = 408
+    Top = 496
+    Width = 185
+    Height = 73
+    Caption = 'Button2'
+    TabOrder = 3
+    OnClick = Button2Click
   end
   object PythonEngine1: TPythonEngine
     IO = PythonGUIInputOutput1
@@ -47,7 +58,7 @@ object frmPython4Delphi: TfrmPython4Delphi
     UnicodeIO = True
     RawOutput = False
     Output = Memo1
-    Left = 216
-    Top = 496
+    Left = 72
+    Top = 512
   end
 end
